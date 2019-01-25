@@ -38,9 +38,7 @@ function register(){
     console.log("Registering device on the WebSocket connection");
     try{
         var registerMessage = 
-           '{"type":"register", "sdid":"'+device_id+'", 
-            "Authorization":"bearer '+device_token+'", 
-            "cid":"'+getTimeMillis()+'"}';
+           '{"type":"register", "sdid":"'+device_id+'", "Authorization":"bearer '+device_token+'", "cid":"'+getTimeMillis()+'"}';
         console.log('Sending register message ' + registerMessage + '\n');
         ws.send(registerMessage, {mask: true});
         isWebSocketReady = true;
@@ -58,9 +56,7 @@ function sendSensorValueToArtikCloud(){
         var data = {
               "Temperature": temp 
             };
-        var payload = '{"sdid":"'+device_id+'"'+ts+', \
-                        "data": '+JSON.stringify(data)+', \
-                        "cid":"'+getTimeMillis()+'"}';        
+        var payload = '{"sdid":"'+device_id+'"'+ts+', "data": '+JSON.stringify(data)+', "cid":"'+getTimeMillis()+'"}';        
         console.log('Sending payload ' + payload + '\n');
         ws.send(payload, {mask: true});
     } catch (e) {
